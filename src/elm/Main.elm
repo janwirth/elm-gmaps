@@ -2,6 +2,7 @@ module Main exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing ( onClick )
+import Debug
 
 -- component import example
 import Components.Hello exposing ( hello )
@@ -21,34 +22,29 @@ model = 0
 
 
 -- UPDATE
-type Msg = NoOp | Increment
+type Msg = NoOp | Increment | Decrement
 
 update : Msg -> Model -> Model
 update msg model =
   case msg of
     NoOp -> model
-    Increment -> model + 1
+    Increment -> Debug.log "Model is now" (model + 1)
+    Decrement -> Debug.log "Model is now" (model - 1)
 
 
+mapEl _ = div [ class "gmap", style [("height", "400px"), ("width", "400px")] ] []
+
+allMaps : Model -> List (Html msg)
+allMaps model = List.map mapEl (List.range 0 (model - 1))
 -- VIEW
 -- Html is defined as: elem [ attribs ][ children ]
 -- CSS can be applied via class names or inline style attrib
 view : Model -> Html Msg
 view model =
-  div [ class "container", style [("margin-top", "30px"), ( "text-align", "center" )] ][    -- inline CSS (literal)
-    div [ class "row" ][
-      div [ class "col-xs-12" ][
-        div [ class "jumbotron" ][
-          img [ src "static/img/elm.jpg", style styles.img ] []                             -- inline CSS (via var)
-          , hello model                                                                     -- ext 'hello' component (takes 'model' as arg)
-          , p [] [ text ( "Elm Webpack Starter" ) ]
-          , button [ class "btn btn-primary btn-lg", onClick Increment ] [                  -- click handler
-            span[ class "glyphicon glyphicon-star" ][]                                      -- glyphicon
-            , span[][ text "FTW!" ]
-          ]
-        ]
-      ]
-    ]
+  div [ ] [
+      h1 [onClick Increment] [ text "MOAR"]
+    , h1 [onClick Decrement] [ text "LESS"]
+    , div [] ( allMaps model )
   ]
 
 
