@@ -108,17 +108,7 @@ if (isProd === true) {
                 to: 'static/img/'
             }, {
                 from: 'src/favicon.ico'
-            }]),
-
-            // extract CSS into a separate file
-            // minify & mangle JS/CSS
-            new webpack.optimize.UglifyJsPlugin({
-                minimize: true,
-                compressor: {
-                    warnings: false
-                }
-                // mangle:  true
-            })
+            }])
         ]
     });
 }
