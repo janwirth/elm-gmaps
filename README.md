@@ -1,5 +1,5 @@
-# elm-webpack-starter
-
+# elm-gmaps
+Integrates elm with gmaps using MutationObserver.
 
 ### About:
 A simple Webpack setup for writing [Elm](http://elm-lang.org/) apps:
