@@ -21,9 +21,10 @@ const bindFreeMapsInstance = google => el => {
   if (freeInstance) {
     console.log('replacing')
     el.parentElement.replaceChild(freeInstance.getDiv(), el)
+    google.maps.event.trigger(freeInstance, "resize")
   } else {
-    console.log('creating')
-    mapRegister.push(new google.maps.Map( el, mapOptions ))
+    const newMap = new google.maps.Map( el, mapOptions )
+    google.maps.event.trigger(newMap, "resize")
   }
 }
 const mapOptions ={
