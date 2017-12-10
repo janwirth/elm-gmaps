@@ -14,6 +14,8 @@ const bindFreeMapsInstance = google => el => {
     el.parentElement.replaceChild(freeInstance.getDiv(), el)
     google.maps.event.trigger(freeInstance, "resize")
   } else {
+    // display 'gmap' element
+    el.style = 'display: block'
     const newMap = new google.maps.Map( el, mapOptions )
     google.maps.event.trigger(newMap, "resize")
   }
@@ -34,10 +36,10 @@ const makeMap = el => {
 var observer = new MutationObserver(function(mutations) {
   mutations.map( mutation => {
     Array.from(mutation.addedNodes).map( node => {
-      node.className === 'gmap' && !node.firstChild
+      node.tagName === 'GMAP' && !node.firstChild
         ? makeMap(node)
         : 'noop'
-      node.className === 'gmap'
+      node.tagName === 'GMAP'
         ? console.log(node)
         : 'noop'
     })
@@ -56,7 +58,7 @@ var config = {
 };
 
 const init = rootEl=> {
-  Array.from(rootEl.querySelectorAll('.gmap')).map( mapEl => makeMap(mapEl))
+  Array.from(rootEl.querySelectorAll('gmap')).map( mapEl => makeMap(mapEl))
   observer.observe( rootEl, config )
 }
 

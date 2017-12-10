@@ -32,7 +32,7 @@ update msg model =
     Decrement -> Debug.log "Model is now" (model - 1)
 
 
-mapEl _ = div [ class "gmap", style [] ] []
+mapEl _ = node "gmap" [ style [] ] []
 
 allMaps : Model -> List (Html msg)
 allMaps model = List.map mapEl (List.range 0 (model - 1))
