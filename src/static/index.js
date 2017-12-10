@@ -6,4 +6,4 @@ import autoGmap from './map'
 const rootEl = document.getElementById( 'main' )
 
 Elm.Main.embed( rootEl );
-autoGmap( rootEl )
+autoGmap()

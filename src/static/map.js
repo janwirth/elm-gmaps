@@ -68,5 +68,5 @@ const init = rootEl=> {
 // later, you can stop observing
 // observer.disconnect()
 export default rootEl => {
-  setTimeout(() => init(rootEl), 100)
+  setTimeout(() => init(rootEl || document.querySelector('body')), 100)
 }
